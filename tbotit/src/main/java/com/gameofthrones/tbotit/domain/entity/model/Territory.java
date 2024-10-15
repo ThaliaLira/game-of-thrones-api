@@ -1,6 +1,6 @@
-package com.gameofthrones.tbotit.domain;
+package com.gameofthrones.tbotit.domain.entity.model;
 
-import com.gameofthrones.tbotit.enums.StrategicValue;
+import com.gameofthrones.tbotit.domain.enums.StrategicValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

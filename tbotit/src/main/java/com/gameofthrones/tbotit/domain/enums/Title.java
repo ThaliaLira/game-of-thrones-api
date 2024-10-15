@@ -1,4 +1,4 @@
-package com.gameofthrones.tbotit.enums;
+package com.gameofthrones.tbotit.domain.enums;
 
 public enum Title {
 

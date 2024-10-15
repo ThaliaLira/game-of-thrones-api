@@ -1,4 +1,4 @@
-package com.gameofthrones.tbotit.enums;
+package com.gameofthrones.tbotit.domain.enums;
 
 public enum Words {
 
@@ -34,4 +34,4 @@ public enum Words {
         return this.words;
     }
 }
-}
+
