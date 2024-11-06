@@ -8,15 +8,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="character")
+@Table(name="`character`")
 @Getter
 @Setter
 
 public class CharacterModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     @ManyToOne
     @JoinColumn(name = "house_id", nullable = false)
     HouseModel house;

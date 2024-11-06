@@ -17,9 +17,6 @@ import java.util.List;
 
 public class HouseDTO {
 
-
-    private Long houseId;
-
     private String name;
 
     private  Double seatOfPower;
@@ -32,9 +29,9 @@ public class HouseDTO {
 
     private Double wealth;
 
-    private List<Integer> allies;
-
-    private  List<Integer> enemies;
-
-    private List<CharacterDTO> characters;
+//    private List<Integer> allies;
+//
+//    private  List<Integer> enemies;
+//
+//    private List<CharacterDTO> characters;
 }

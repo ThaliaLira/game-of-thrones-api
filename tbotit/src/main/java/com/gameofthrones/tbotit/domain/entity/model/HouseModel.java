@@ -1,11 +1,12 @@
 package com.gameofthrones.tbotit.domain.entity.model;
 
+import com.gameofthrones.tbotit.domain.enums.Allies;
+import com.gameofthrones.tbotit.domain.enums.Enemies;
 import com.gameofthrones.tbotit.domain.enums.Sigils;
 import com.gameofthrones.tbotit.domain.enums.Words;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.List;
 
 @Getter
@@ -30,9 +31,9 @@ public class HouseModel {
     @Column
     Double wealth;
     @Column
-    List<Integer> allies;
+    List<Allies> allies;
     @Column
-    List<Integer> enemies;
+    List<Enemies> enemies;
     @OneToMany(mappedBy = "house")
     List<CharacterModel> characters;
 }
