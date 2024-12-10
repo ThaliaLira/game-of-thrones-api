@@ -3,6 +3,7 @@ package com.gameofthrones.tbotit.controller;
 
 import com.gameofthrones.tbotit.controller.DTO.HouseDTO;
 import com.gameofthrones.tbotit.domain.entity.model.HouseModel;
+import com.gameofthrones.tbotit.domain.exception.DomainException;
 import com.gameofthrones.tbotit.services.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,6 +52,13 @@ public class HouseController {
     public ResponseEntity<Void> deleteHouseById (@PathVariable Long houseId) {
        houseService.deleteHouseBtyId(houseId);
        return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(DomainException.class)
+    public ResponseEntity<String> capturar(DomainException e) {
+       return ResponseEntity.badRequest().body(e.getMessage());
+
+
     }
 
 }

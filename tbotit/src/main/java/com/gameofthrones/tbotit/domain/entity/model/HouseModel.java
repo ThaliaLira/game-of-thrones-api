@@ -36,4 +36,6 @@ public class HouseModel {
     List<Enemies> enemies;
     @OneToMany(mappedBy = "house")
     List<CharacterModel> characters;
+    @OneToMany(mappedBy = "currentlyRulingHouseId")
+    List<Territory> territories;
 }

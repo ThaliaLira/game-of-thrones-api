@@ -1,8 +1,9 @@
 package com.gameofthrones.tbotit.services;
 
-import com.gameofthrones.tbotit.controller.DTO.HouseDTO;
 import com.gameofthrones.tbotit.domain.entity.model.HouseModel;
-import com.gameofthrones.tbotit.domain.entity.repository.HouseRepository;
+import com.gameofthrones.tbotit.repository.HouseRepository;
+import com.gameofthrones.tbotit.domain.exception.DomainException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,15 @@ public class HouseService {
     @Autowired
     HouseRepository houseRepository;
 
+    @Transactional
     public HouseModel salvarHouse(HouseModel houseModel){
+        boolean houseInUse = houseRepository.findByName(houseModel.getName())
+                .filter(h -> !h.equals(houseModel))
+                .isPresent();
+
+        if(houseInUse){
+            throw new DomainException("Já existe uma casa cadastrada com este nome");
+        }
         return houseRepository.save(houseModel);
     }
 
