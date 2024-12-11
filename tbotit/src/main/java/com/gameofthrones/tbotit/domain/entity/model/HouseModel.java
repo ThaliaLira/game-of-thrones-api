@@ -22,16 +22,20 @@ public class HouseModel {
     String name;
     @Column
     Double seatOfPower;
+    @Enumerated
     @Column
     Sigils sigils;
+    @Enumerated
     @Column
     Words words;
     @Column
     Double armySize;
     @Column
     Double wealth;
+    @Enumerated
     @Column
     List<Allies> allies;
+    @Enumerated
     @Column
     List<Enemies> enemies;
     @OneToMany(mappedBy = "house")

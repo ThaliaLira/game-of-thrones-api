@@ -1,5 +1,6 @@
 package com.gameofthrones.tbotit.services;
 
+import com.gameofthrones.tbotit.controller.DTO.HouseDTO;
 import com.gameofthrones.tbotit.domain.entity.model.HouseModel;
 import com.gameofthrones.tbotit.repository.HouseRepository;
 import com.gameofthrones.tbotit.domain.exception.DomainException;
@@ -36,25 +37,67 @@ public class HouseService {
         return houseRepository.findAll();
     }
 
-    public HouseModel updateHouse(Long houseId, HouseModel houseDetails) {
-        return houseRepository.findById(houseId).map(house -> {
-            houseDetails.setName(house.getName());
-            houseDetails.setSeatOfPower(house.getSeatOfPower());
-            houseDetails.setSigils(house.getSigils());
-            houseDetails.setWords(house.getWords());
-            houseDetails.setArmySize(house.getArmySize());
-            houseDetails.setWealth(house.getWealth());
-            houseDetails.setAllies(house.getAllies());
-            houseDetails.setEnemies(house.getEnemies());
-            houseDetails.setCharacters(house.getCharacters());
-            return houseRepository.save(house);
-        }).orElseThrow(() -> new RuntimeException("House not found"));
+    public HouseModel updateHouse(Long houseId, HouseDTO houseDTO) {
+        HouseModel existentHouse = houseRepository.findById(houseId).orElseThrow(() -> new DomainException("House not found."));
+
+        if (houseDTO.getName()!= null) {
+            existentHouse.setName(houseDTO.getName());
+        }
+
+        if (houseDTO.getSeatOfPower()!= null) {
+            existentHouse.setSeatOfPower(houseDTO.getSeatOfPower());
+        }
+
+        if (houseDTO.getSigils()!= null) {
+            existentHouse.setSigils(houseDTO.getSigils());
+        }
+
+        if (houseDTO.getWords()!= null) {
+            existentHouse.setWords(houseDTO.getWords());
+        }
+
+        if (houseDTO.getArmySize()!= null) {
+            existentHouse.setArmySize(houseDTO.getArmySize());
+        }
+
+        if (houseDTO.getWealth()!= null) {
+            existentHouse.setWealth(houseDTO.getWealth());
+        }
+
+        if (houseDTO.getAllies()!= null) {
+            existentHouse.setAllies(houseDTO.getAllies());
+        }
+
+        if (houseDTO.getEnemies()!= null) {
+            existentHouse.setEnemies(houseDTO.getEnemies());
+        }
+
+        if (houseDTO.getCharacters()!= null) {
+            existentHouse.setCharacters(houseDTO.getCharacters());
+        }
+
+        return houseRepository.save(existentHouse);
+
+//        return houseRepository.findById(houseId).map(house -> {
+//            houseDetails.setName(house.getName());
+//            houseDetails.setSeatOfPower(house.getSeatOfPower());
+//            houseDetails.setSigils(house.getSigils());
+//            houseDetails.setWords(house.getWords());
+//            houseDetails.setArmySize(house.getArmySize());
+//            houseDetails.setWealth(house.getWealth());
+//            houseDetails.setAllies(house.getAllies());
+//            houseDetails.setEnemies(house.getEnemies());
+//            houseDetails.setCharacters(house.getCharacters());
+//            return houseRepository.save(house);
+//        }).orElseThrow(() -> new RuntimeException("House not found"));
     }
 
-    public void deleteHouseBtyId(Long housId) {
-        houseRepository.deleteById(housId);
+    public void deleteHouseById(Long houseId) {
+
+        if (!houseRepository.existsById(houseId)) {
+            throw new DomainException("House not found.");
+        }
+        houseRepository.deleteById(houseId);
     }
-
-
 
 }

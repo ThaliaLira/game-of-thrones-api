@@ -1,5 +1,8 @@
 package com.gameofthrones.tbotit.controller.DTO;
 
+import com.gameofthrones.tbotit.domain.entity.model.CharacterModel;
+import com.gameofthrones.tbotit.domain.enums.Allies;
+import com.gameofthrones.tbotit.domain.enums.Enemies;
 import com.gameofthrones.tbotit.domain.enums.Sigils;
 import com.gameofthrones.tbotit.domain.enums.Words;
 import jakarta.persistence.*;
@@ -29,9 +32,9 @@ public class HouseDTO {
 
     private Double wealth;
 
-//    private List<Integer> allies;
-//
-//    private  List<Integer> enemies;
-//
-//    private List<CharacterDTO> characters;
+   private List<Allies> allies;
+
+    private  List<Enemies> enemies;
+
+    private List<CharacterModel> characters;
 }
